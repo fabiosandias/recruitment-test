@@ -1,0 +1,21 @@
+<task-button-menu></task-button-menu>
+	<h1>Create new task</h1>
+	<form ng-submit=""novalidate>
+		<div class="form-group">
+			<label for="task-type">Task Type</label>
+			<input id="task-type" class="form-control input-lg" type="text" placeholder="Enter type">
+			<p class="help-block">Type of tasks accepted: shopping or work.</p>
+		</div>
+		<div class="form-group">
+			<label for="Content">Content</label>
+			<textarea id="Content" class="form-control" rows="3"></textarea>
+		</div>
+		<div class="checkbox">
+			<label>
+				<input type="checkbox"> Is the task done?
+			</label>
+		</div>
+		<hr>
+		<a class="btn btn-danger btn-lg" ui-sref="task.list" href="#" role="button">back to task list</a>
+		<button type="submit" class="btn btn-success btn-lg pull-right">Save task</button>
+	</form>
