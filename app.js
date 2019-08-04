@@ -30,7 +30,6 @@ angular.module('recruitmentTest').constant('moment', require('moment-timezone'))
 
 require('./assets/js/components');
 require('./assets/js/directives');
-require('./assets/js/filters');
 require('./config');
 require('./routes');
 require('./assets/js/services');
