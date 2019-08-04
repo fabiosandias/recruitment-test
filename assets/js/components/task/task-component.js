@@ -4,19 +4,22 @@ require('angular')
     .module('recruitmentTest')
     .component('task', {
         bindings: {
+            tasks: '='
         },
         controllerAs: 'vm',
         template: require('./task.html'),
         controller: class Task {
 
-            constructor() {
+            constructor(Enums, TaskService) {
                 'ngInject';
+                this.enums = Enums;
+                this.taskService = TaskService;
 
             }
 
-            $onInit() {
-
-
+            deleteById(id) {
+                this.taskService.deleteById(id);
             }
+
         }
     });

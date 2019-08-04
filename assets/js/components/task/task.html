@@ -1,8 +1,33 @@
-<task-button-menu></task-button-menu>
-<ul class="list-group">
-	<li class="list-group-item">Cras justo odio</li>
-	<li class="list-group-item">Dapibus ac facilisis in</li>
-	<li class="list-group-item">Morbi leo risus</li>
-	<li class="list-group-item">Porta ac consectetur ac</li>
-	<li class="list-group-item">Vestibulum at eros</li>
-</ul>
+<table class="table table-bordered table-striped">
+	<thead>
+	<tr>
+		<th>uuid</th>
+		<th>Type</th>
+		<th>Content</th>
+		<th>Status</th>
+		<th>action</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr ng-repeat="task in vm.tasks track by $index">
+		<th scope="row">{{task.uuid}}</th>
+		<td>{{task.type}}</td>
+		<td>{{task.content}}</td>
+		<td>{{task.done ? vm.enums.TASKS_STATUS.COMPLETED : vm.enums.TASKS_STATUS.OPENED}}</td>
+		<td>
+			<div class="btn-group btn-group-xs text-center">
+				<button
+					type="button"
+					title="Delete task"
+					class="btn btn-primary"
+					ng-click="vm.deleteById(task.uuid)"
+				>
+					<i class="fa fa-trash"></i>
+				</button>
+				<a title="Edit task" class="btn btn-primary" ui-sref="task.edit({uuid: task.uuid, m:'edit'})" ><i class="fa fa-pencil-square-o"></i></a>
+				<a title="Task Detail" class="btn btn-primary" ui-sref="task.edit({uuid: task.uuid, m:'detail'})" ><i class="fa fa-info"></i></a>
+			</div>
+		</td>
+	</tr>
+	</tbody>
+</table>

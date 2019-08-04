@@ -1,0 +1,16 @@
+<task-button-menu
+	delete-all-tasks="vm.deleteAllTask()"
+>
+</task-button-menu>
+
+<task
+	ng-if="vm.tasks.length > 0"
+	tasks="vm.tasks"
+>
+</task>
+
+<feedback-message
+	ng-if="!vm.tasks || vm.tasks.length === 0"
+	message="Wow. You have nothing else to do. Enjoy the rest of your day!"
+>
+</feedback-message>

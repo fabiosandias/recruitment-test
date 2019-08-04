@@ -1,0 +1,9 @@
+<form-task
+	ng-if="vm.task"
+	task="vm.task"
+></form-task>
+
+<feedback-message
+	ng-if="!vm.task"
+	message="Are you a hacker or something? The task you were trying to edit doesn't exist."
+></feedback-message>

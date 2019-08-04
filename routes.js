@@ -18,11 +18,20 @@ function routes($stateProvider, $locationProvider, $urlRouterProvider) {
         })
         .state('task.create', {
             url: '/create',
-            template: `<form-task></form-task>`,
+            controller: ($scope, $state, $stateParams) => {
+                'ngInject';
+
+                $scope.task = { uuid: '', type: '', content: '', done : '', date_created: ''};
+            },
+            template: `<form-task task="{ uuid: '', type: '', content: '', done : '', date_created: ''}"></form-task>`,
         })
         .state('task.list', {
             url: '/list',
-            template: `<task></task>`,
+            template: `<view-tasks></view-tasks>`,
+        })
+        .state('task.edit', {
+            url: '/edit/:uuid/method/:m',
+            template: `<edit-task></edit-task>`,
         });
 
 

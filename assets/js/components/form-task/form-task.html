@@ -1,21 +1,97 @@
 <task-button-menu></task-button-menu>
-	<h1>Create new task</h1>
-	<form ng-submit=""novalidate>
-		<div class="form-group">
-			<label for="task-type">Task Type</label>
-			<input id="task-type" class="form-control input-lg" type="text" placeholder="Enter type">
-			<p class="help-block">Type of tasks accepted: shopping or work.</p>
+<div class="row">
+	<div class="col-lg-12">
+		<div class="col-lg-6"><h1>{{vm.titleForm}}</h1></div>
+		<div class="col-lg-6">
+			<button
+				class="btn btn-sm btn-success pull-right"
+				ng-click="vm.enableEditing()"
+				ng-if="vm.isDetail === 'detail'"
+			>
+				Enable editing
+			</button>
 		</div>
-		<div class="form-group">
-			<label for="Content">Content</label>
-			<textarea id="Content" class="form-control" rows="3"></textarea>
+	</div>
+</div>
+
+<div class="col-lg-12">
+	<form novalidate name="formTask" ng-submit="vm.onSubmit()">
+		<div
+			class="form-group"
+			ng-class="
+				{'has-error':
+					(formTask.task_type.$dirty && formTask.task_type.$invalid) || (formTask.task_type.$touched && formTask.task_type.$invalid),
+				'has-success':
+					(formTask.task_type.$dirty && formTask.task_type.$valid) || (formTask.task_type.$touched && formTask.task_type.$valid)}
+			"
+		>
+			<label class="control-label" for="task-type">Type of tasks accepted: shopping or work.</label>
+			<input
+				id="task-type"
+				class="form-control input-lg"
+				type="text"
+				placeholder="Enter type"
+				ng-model="vm.task.type"
+				name="task_type"
+				ng-required="true"
+				types-allowed
+				types-tasks="['SHOPPING', 'WORK']"
+				ng-readonly="vm.isDetail === 'detail'"
+			>
+			<div
+				class="text-danger"
+				ng-messages="(formTask.task_type.$dirty && formTask.task_type.$error) || (formTask.task_type.$touched && formTask.task_type.$error)"
+			>
+				<small ng-message="required">Required field</small>
+				<small ng-message="typesAllowed">The task type you provided is not supported. You can only use shopping
+					or work.</small>
+			</div>
+		</div>
+		<div
+			class="form-group"
+			ng-class="
+				{'has-error':
+					(formTask.task_content.$dirty && formTask.task_content.$invalid) || (formTask.task_content.$touched && formTask.task_content.$invalid),
+				'has-success':
+					(formTask.task_content.$dirty && formTask.task_content.$valid) || (formTask.task_content.$touched && formTask.task_content.$valid)}
+			"
+		>
+			<label for="Content" class="control-label">Content</label>
+			<textarea
+				ng-readonly="vm.isDetail === 'detail'"
+				id="Content"
+				class="form-control"
+				rows="3"
+				ng-model="vm.task.content"
+				name="task_content"
+				ng-required="true"
+			>
+			
+			</textarea>
+			<div  class="text-danger"
+				  ng-messages="(formTask.task_content.$dirty && formTask.task_content.$error) || (formTask.task_content.$touched && formTask.task_content.$error)"
+			>
+				<small ng-message="required">Bad move! Try removing the task instead of deleting its content.</small>
+			</div>
 		</div>
 		<div class="checkbox">
 			<label>
-				<input type="checkbox"> Is the task done?
+				<input
+					type="checkbox"
+					ng-model="vm.task.done"
+					name="task_done"
+					ng-disabled="vm.isDetail === 'detail'"
+				> Is the task done?
 			</label>
 		</div>
 		<hr>
 		<a class="btn btn-danger btn-lg" ui-sref="task.list" href="#" role="button">back to task list</a>
-		<button type="submit" class="btn btn-success btn-lg pull-right">Save task</button>
+		<button
+			ng-if="vm.isDetail !== 'detail'"
+			type="submit"
+			class="btn btn-success btn-lg pull-right"
+		>
+			{{(vm.isDetail === 'edit') ? 'Save change' : 'Save task'}}
+		</button>
 	</form>
+</div>

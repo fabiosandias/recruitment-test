@@ -1,7 +1,17 @@
 <div class="container">
 	<div class="row">
-		<a class="btn btn-primary pull-right" ui-sref="task.list" role="button">Ver todas as tarefas</a>
-		<a class="btn btn-success pull-right" ui-sref="task.create" href="#" role="button">Adicionar Tarefa</a>
+		
+		<a class="btn btn-primary pull-right btn-view" ui-sref="task.list" role="button">View all tasks</a>
+		<a class="btn btn-success pull-right" ui-sref="task.create" role="button">Add Task</a>
+		<button
+			type="button"
+			ng-click="vm.deleteAllTasks()"
+			class="btn btn-danger"
+			role="button"
+			ng-if="vm.thereAreTasks()"
+		>
+			Delete all tasks
+		</button>
 	</div>
 </div>
 <hr	>
