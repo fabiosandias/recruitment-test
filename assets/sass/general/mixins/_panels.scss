@@ -1,0 +1,14 @@
+//fazer todo o heading to accordion ser clicável, não só o link que fica dentro dele.
+uib-accordion {
+    > .panel-group > .panel {
+        > .panel-heading {
+          padding: 0;
+
+            .accordion-toggle {
+              display: block;
+              padding: $panel-heading-padding;
+              text-decoration: none;
+            }
+        }
+    }
+}
